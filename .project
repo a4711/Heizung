@@ -87,6 +87,11 @@
 			<location>H:/arduino/libraries/PubSubClient</location>
 		</link>
 		<link>
+			<name>libraries/Ticker</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/esp8266/hardware/esp8266/2.3.0/libraries/Ticker</locationURI>
+		</link>
+		<link>
 			<name>libraries/WiFiManager</name>
 			<type>2</type>
 			<location>H:/arduino/libraries/WiFiManager</location>

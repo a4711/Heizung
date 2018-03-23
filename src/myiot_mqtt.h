@@ -108,7 +108,7 @@ private:
       char buffer[256] = {0};
       strncpy(buffer, (const char*)payload,  length>sizeof(buffer) ? sizeof(buffer) : length);
       topic = topic + strlen(device_name) + 1; // device_name + '/'
- 	 for (Subscription& sub : subscriptions)
+ 	    for (Subscription& sub : subscriptions)
       {
         if (sub.equals(topic))
         {
@@ -139,7 +139,12 @@ private:
       {
         if (invalidConfig()) return;
         
-        if (client.connect(device_name))
+
+        char willTopic[256];
+        snprintf(willTopic, sizeof(willTopic), "%s/dead", device_name);
+        const char willMessage[] = "died";
+
+        if (client.connect(device_name, willTopic, 0, false, willMessage))
         {
           info("MQTT client connected", device_name);
           register_subscriptions();

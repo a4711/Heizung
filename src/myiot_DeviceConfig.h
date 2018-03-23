@@ -26,7 +26,14 @@ class DeviceConfig
   void setup()
   {
      fsReadConfig();
-     WiFi.hostname(this->getDeviceName());
+
+     String hostname(this->getDeviceName());
+     if (0 == hostname.length())
+     {
+       hostname = "ESP" + String(ESP.getChipId());
+     }
+
+     WiFi.hostname(hostname);
 
      WiFiManager wifiManager;
      WiFiManagerParameter custom_device_name("device", "Device Name", deviceName, sizeof(deviceName));
@@ -36,7 +43,7 @@ class DeviceConfig
      wifiManager.addParameter(&custom_mqtt_server);
 
      wifiManager.setSaveConfigCallback([](){saveConfig = true;});
-     wifiManager.autoConnect();  
+     wifiManager.autoConnect(hostname.c_str());
 
      if (saveConfig)
      {

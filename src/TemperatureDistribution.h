@@ -76,9 +76,13 @@ class TemperatureDistribution
     {
       for (size_t index = 0; !isIndexFree(index); index++)
       {
-         float temperature = get_temperature(index);
-         publish(index, temperature);
-         dump(index, temperature);
+        long start = millis();
+        float temperature = get_temperature(index);
+        publish(index, temperature);
+        dump(index, temperature);
+
+        long dt = millis() - start;
+        Serial << "temperature measure " << index << " took " << dt << "milliseconds\n";
       }
     }
 
@@ -86,6 +90,7 @@ class TemperatureDistribution
 
     void detect()
     {
+      long start = millis();
       resetSensors();
       DeviceAddress addr;
       oneWire.reset_search();
@@ -97,6 +102,8 @@ class TemperatureDistribution
           addSensorAddress(addr);
         }
       }
+      long dt = millis() - start;
+      Serial << "temperature sensor detect took " << dt << "milliseconds\n";
     }
 
     size_t addSensorAddress(const DeviceAddress& deviceAddress)
