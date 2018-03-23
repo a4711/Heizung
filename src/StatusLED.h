@@ -56,8 +56,8 @@ public:
           pulseCount = error;
           sleep = 10;
       }
+      load();
     }
-    load();
   }
 private:
 
