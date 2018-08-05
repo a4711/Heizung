@@ -16,10 +16,15 @@ class DetectError
     publish = fpublish;
   }
   
+  int getValue() const
+  {
+    return analogRead(sensorPin);
+  }
+
   void expire()
   {
     // read the value from the sensor:
-    int sensorValue = analogRead(sensorPin);
+    int sensorValue = getValue();
     if (publish)
     {
        char buffer[256];

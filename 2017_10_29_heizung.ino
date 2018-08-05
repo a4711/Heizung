@@ -33,6 +33,21 @@ OneWire oneWire(ONEWIRE);
 TemperatureDistribution tdist(oneWire);
 
 
+void setup_web_server()
+{
+  webServer.setup(config);
+  webServer.on("/ex", [](){
+    String txt = "<!DOCTYPE html>\r\n";
+    txt += "<html><body><form action=\"save\" method=\"GET\">\
+            Error Lampe: <INPUT type=\"text\" value=\"" + String(detectError.getValue()) + "\"><br>\
+            Temperatur 0: <INPUT type=\"text\" value=\"" + tdist.get_temperature(0) + "\"><br>\
+            Temperatur 1: <INPUT type=\"text\" value=\"" + tdist.get_temperature(1) + "\"><br>\
+            </form></body></html>";
+    webServer.send(200, "text/html", txt);
+  });
+}
+
+
 void setup()
 {
 	Serial.begin(115200);
@@ -43,17 +58,6 @@ void setup()
 	config.setup();
   statusLed.setError(StatusLED::Ok);
 
-	Serial.print("DeviceName: ");
-	Serial.println(config.getDeviceName());
-	Serial.print("MQTT Server: ");
-	Serial.println(config.getMqttServer());
-    IPAddress localIp = WiFi.localIP();
-    Serial.print("localIp: ");
-    Serial.println(localIp.toString());
-
-  Serial.print("SSID: ");
-  Serial.println(WiFi.SSID().c_str());
-
 	mqtt.setup(config.getDeviceName(), config.getMqttServer());
 	mqtt.setOnConnected([](){mqtt.publish("lampe","connected");});
 
@@ -62,13 +66,13 @@ void setup()
 	ota.setup(config.getDeviceName());
 	detectError.setup( publish ) ;
 	button.setup(publish);
-	webServer.setup(config);
+	setup_web_server();
 	tdist.setup(publish);
 
 
 	tsystem.add(&ota, MyIOT::TimerSystem::TimeSpec(0,10e6));
 	tsystem.add(&mqtt, MyIOT::TimerSystem::TimeSpec(0,100e6));
-	tsystem.add(&webServer, MyIOT::TimerSystem::TimeSpec(0,100e6));
+  tsystem.add(&webServer, MyIOT::TimerSystem::TimeSpec(0,100e6));
 
 	tsystem.add([](){detectError.expire();}, MyIOT::TimerSystem::TimeSpec(15));
 	tsystem.add([](){button.expire();}, MyIOT::TimerSystem::TimeSpec(1));

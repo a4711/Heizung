@@ -10,6 +10,7 @@
 
 #include <Arduino.h>
 #include <Ticker.h>
+#include <ESP8266WiFi.h>
 
 class StatusLED
 {
@@ -25,6 +26,8 @@ public:
 
   void setup(uint8_t x_outputPin)
   {
+    setError(StatusLED::Setup);
+
     outputPin = x_outputPin;
     pinMode(outputPin, OUTPUT);
     ticker.attach_ms(100, &s_tick, this);
@@ -89,6 +92,7 @@ private:
 
   void tick()
   {
+    checkWiFi();
    // return;
     if (!currentTick) load();
     if (currentTick > sleep)
@@ -111,6 +115,22 @@ private:
     currentTick--;
   }
   
+  void checkWiFi()
+  {
+    if (currentError != Setup)
+    {
+      wl_status_t stat = WiFi.status();
+      if (currentError == Ok && stat == WL_DISCONNECTED)
+      {
+        setError(ErrorType::WifiError);
+      }
+      else if (currentError == WifiError && stat == WL_CONNECTED)
+      {
+        setError(ErrorType::Ok);
+      }
+    }
+  }
+
   size_t pulseCount;  // number of pulses
   size_t pulseWidth;  // witdh of one pulse (one pulse needs two ticks)
   size_t sleep;       // number of sleep ticks.

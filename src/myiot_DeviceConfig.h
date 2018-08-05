@@ -23,44 +23,74 @@ class DeviceConfig
   void setMqttServer(const char* server) { secureCopy(mqttServer, server, sizeof(mqttServer)); }
   void setState(const char* server) { secureCopy(state, server, sizeof(state)); }
   
-  void setup()
+  void setup(uint8_t configurePin = 0, int checkPinState = LOW )
   {
      fsReadConfig();
 
      String hostname(this->getDeviceName());
-     if (0 == hostname.length())
-     {
-       hostname = "ESP" + String(ESP.getChipId());
-     }
-
+     WiFi.mode(WiFiMode::WIFI_STA);
      WiFi.hostname(hostname);
+     pinMode(configurePin, INPUT);
 
-     WiFiManager wifiManager;
-     WiFiManagerParameter custom_device_name("device", "Device Name", deviceName, sizeof(deviceName));
-     WiFiManagerParameter custom_mqtt_server("server", "MQTT Server", mqttServer, sizeof(mqttServer));
-     
-     wifiManager.addParameter(&custom_device_name);
-     wifiManager.addParameter(&custom_mqtt_server);
-
-     wifiManager.setSaveConfigCallback([](){saveConfig = true;});
-     wifiManager.autoConnect(hostname.c_str());
-
-     if (saveConfig)
+     unsigned long counter = 0;
+     while (WiFi.status() != WL_CONNECTED)
      {
-       strncpy(deviceName, custom_device_name.getValue(), sizeof(deviceName));
-       strncpy(mqttServer, custom_mqtt_server.getValue(), sizeof(mqttServer));
-       fsSaveConfig();
-     }
+       counter++;
+       delay(1);
+       yield();
+       if (checkPinState == digitalRead(configurePin))
+       {
+         if (8 < hostname.length())
+         {
+           hostname += ESP.getChipId();
+         }
 
-     WiFi.hostname(this->getDeviceName());
-     IPAddress localIp = WiFi.localIP();
-     Serial.print("localIp: ");
-     Serial.println(localIp.toString());
+         info("Starting config portal");
+         startConfigPortal(hostname.c_str(), "geheim1234");
+         break;
+       }
+       if (0 == counter%5000)
+       {
+         info("Try to connect to SSID: ", WiFi.SSID().c_str());
+       }
+     }
+     info("WiFi connected: ", WiFi.SSID().c_str() );
   }
 
   void save(){fsSaveConfig();}
   
   private:
+
+    void startConfigPortal(const char* hostname, const char* password)
+    {
+      WiFiManager wifiManager;
+      WiFiManagerParameter custom_device_name("device", "Device Name", deviceName, sizeof(deviceName));
+      WiFiManagerParameter custom_mqtt_server("server", "MQTT Server", mqttServer, sizeof(mqttServer));
+
+      wifiManager.addParameter(&custom_device_name);
+      wifiManager.addParameter(&custom_mqtt_server);
+
+      wifiManager.setSaveConfigCallback([](){saveConfig = true;});
+
+      wifiManager.setConfigPortalTimeout(180);
+
+      if (!wifiManager.autoConnect(hostname, password))
+      {
+        Serial.println("Configuration failed. -> reboot");
+        ESP.restart();
+      }
+
+      if (saveConfig)
+      {
+        strncpy(deviceName, custom_device_name.getValue(), sizeof(deviceName));
+        strncpy(mqttServer, custom_mqtt_server.getValue(), sizeof(mqttServer));
+        fsSaveConfig();
+      }
+      WiFi.hostname(this->getDeviceName());
+      IPAddress localIp = WiFi.localIP();
+      Serial.print("localIp: ");
+      Serial.println(localIp.toString());
+    }
 
     void error(const char* msg)
     {
