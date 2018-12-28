@@ -32,7 +32,7 @@ class TemperatureDistribution
 
       Serial << "TemperatureDistribution::setup ... ";
       controller.begin();
-      controller.setResolution(TEMP_12_BIT);
+      controller.setResolution(12);
       Serial << "Device Count: " << controller.getDeviceCount() << "\n";
       detect();
     }
@@ -50,7 +50,18 @@ class TemperatureDistribution
         {
          controller.requestTemperaturesByAddress(sensors[index]);
          float retVal = controller.getTempC(sensors[index]);
-         if (85.0 != retVal) return retVal; // initial read return 85 degree.
+
+         if (-127.0 == retVal) // -127 is "not connected"
+         {
+        	 if (i == 2)
+        	 {
+        		 resetSensors();
+        		 detect();
+        	 }
+        	 continue; // retry
+         }
+
+         if (85.0 != retVal ) return retVal; // initial read return 85 degree
         }
       }
       return 0.0;

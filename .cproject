@@ -25,7 +25,7 @@
             			
             <storageModule moduleId="cdtBuildSystem" version="4.0.0">
                 				
-                <configuration artifactName="${ProjName}" buildProperties="" description="" id="io.sloeber.core.toolChain.release.1522714401" name="Release" parent="org.eclipse.cdt.build.core.emptycfg">
+                <configuration artifactName="${ProjName}" buildProperties="" description="" id="io.sloeber.core.toolChain.release.1522714401" name="Release" optionalBuildProperties="" parent="org.eclipse.cdt.build.core.emptycfg">
                     					
                     <folderInfo id="io.sloeber.core.toolChain.release.1522714401.1039605055" name="/" resourcePath="">
                         						
@@ -37,7 +37,7 @@
                             							
                             <tool id="io.sloeber.tool.sketch.compiler.cpp.27799477" name="Arduino C++ Compiler" superClass="io.sloeber.tool.sketch.compiler.cpp">
                                 								
-                                <option id="io.sloeber.compiler.cpp.sketch.option.incpath.1584067796" name="Include Paths (-I)" superClass="io.sloeber.compiler.cpp.sketch.option.incpath" valueType="includePath">
+                                <option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="io.sloeber.compiler.cpp.sketch.option.incpath.1584067796" name="Include Paths (-I)" superClass="io.sloeber.compiler.cpp.sketch.option.incpath" valueType="includePath">
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/core/core}&quot;"/>
                                     									
@@ -45,21 +45,13 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ArduinoJson}&quot;"/>
                                     									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ArduinoJson/src}&quot;"/>
-                                    									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WebServer}&quot;"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WebServer/src}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/WiFiManager}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DNSServer}&quot;"/>
                                     									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DNSServer/src}&quot;"/>
-                                    									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WiFi}&quot;"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WiFi/src}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/OneWire}&quot;"/>
                                     									
@@ -71,9 +63,25 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/PubSubClient}&quot;"/>
                                     									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/PubSubClient/src}&quot;"/>
-                                    									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DallasTemperature}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ArduinoJson_ID64/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DallasTemperature_ID54}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/OneWire_ID1}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/PubSubClient_ID89/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/WiFi/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DNSServer/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WebServer/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WiFi/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/SPI}&quot;"/>
                                     								
                                 </option>
                                 								
@@ -83,7 +91,7 @@
                             							
                             <tool id="io.sloeber.tool.compiler.c.1868899613" name="Arduino C Compiler" superClass="io.sloeber.tool.compiler.c">
                                 								
-                                <option id="io.sloeber.compiler.c.sketch.option.incpath.1898629878" name="Include Paths (-I)" superClass="io.sloeber.compiler.c.sketch.option.incpath" valueType="includePath">
+                                <option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="io.sloeber.compiler.c.sketch.option.incpath.1898629878" name="Include Paths (-I)" superClass="io.sloeber.compiler.c.sketch.option.incpath" valueType="includePath">
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/core/core}&quot;"/>
                                     									
@@ -91,21 +99,13 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ArduinoJson}&quot;"/>
                                     									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ArduinoJson/src}&quot;"/>
-                                    									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WebServer}&quot;"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WebServer/src}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/WiFiManager}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DNSServer}&quot;"/>
                                     									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DNSServer/src}&quot;"/>
-                                    									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WiFi}&quot;"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WiFi/src}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/OneWire}&quot;"/>
                                     									
@@ -117,9 +117,25 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/PubSubClient}&quot;"/>
                                     									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/PubSubClient/src}&quot;"/>
-                                    									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DallasTemperature}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ArduinoJson_ID64/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DallasTemperature_ID54}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/OneWire_ID1}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/PubSubClient_ID89/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/WiFi/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DNSServer/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WebServer/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WiFi/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/SPI}&quot;"/>
                                     								
                                 </option>
                                 								
@@ -129,7 +145,7 @@
                             							
                             <tool id="io.sloeber.tool.sketch.compiler.s.1870943822" name="Arduino Assembler" superClass="io.sloeber.tool.sketch.compiler.s">
                                 								
-                                <option id="io.sloeber.compiler.asm.sketch.option.incpath.1550523936" name="Include Paths (-I)" superClass="io.sloeber.compiler.asm.sketch.option.incpath" valueType="includePath">
+                                <option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="io.sloeber.compiler.asm.sketch.option.incpath.1550523936" name="Include Paths (-I)" superClass="io.sloeber.compiler.asm.sketch.option.incpath" valueType="includePath">
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/core/core}&quot;"/>
                                     									
@@ -137,21 +153,13 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ArduinoJson}&quot;"/>
                                     									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ArduinoJson/src}&quot;"/>
-                                    									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WebServer}&quot;"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WebServer/src}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/WiFiManager}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DNSServer}&quot;"/>
                                     									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DNSServer/src}&quot;"/>
-                                    									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WiFi}&quot;"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WiFi/src}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/OneWire}&quot;"/>
                                     									
@@ -163,9 +171,25 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/PubSubClient}&quot;"/>
                                     									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/PubSubClient/src}&quot;"/>
-                                    									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DallasTemperature}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ArduinoJson_ID64/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DallasTemperature_ID54}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/OneWire_ID1}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/PubSubClient_ID89/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/WiFi/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/DNSServer/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WebServer/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/ESP8266WiFi/src}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/2017_10_29_heizung/libraries/SPI}&quot;"/>
                                     								
                                 </option>
                                 								
@@ -187,7 +211,7 @@
                     					
                     <sourceEntries>
                         						
-                        <entry excluding="libraries/WiFiManager/travis|libraries/ArduinoJson/scripts|libraries/ArduinoJson/fuzzing|libraries/?*/**/?xamples/**|libraries/?*/**/?xtras/**|libraries/?*/**/test*/**|libraries/?*/**/third-party/**|libraries**/._*|libraries/?*/c*/?*|libraries/?*/d*/?*|libraries/?*/D*/?*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+                        <entry excluding="libraries/OneWire_ID1/util|libraries/ArduinoJson_ID64/.github|libraries/WiFiManager/travis|libraries/ArduinoJson/scripts|libraries/ArduinoJson/fuzzing|libraries/?*/**/?xamples/**|libraries/?*/**/?xtras/**|libraries/?*/**/test*/**|libraries/?*/**/third-party/**|libraries**/._*|libraries/?*/c*/?*|libraries/?*/d*/?*|libraries/?*/D*/?*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
                         					
                     </sourceEntries>
                     				
