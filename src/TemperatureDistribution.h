@@ -53,11 +53,6 @@ class TemperatureDistribution
 
          if (-127.0 == retVal) // -127 is "not connected"
          {
-        	 if (i == 2)
-        	 {
-        		 resetSensors();
-        		 detect();
-        	 }
         	 continue; // retry
          }
 
