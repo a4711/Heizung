@@ -39,40 +39,56 @@ void setup_web_server()
   webServer.on("/ex", [](){
     String txt = "<!DOCTYPE html>\r\n";
     txt += "<html><body><form action=\"save\" method=\"GET\">\
-            Error Lampe: <INPUT type=\"text\" value=\"" + String(detectError.getValue()) + "\"><br>\
-            Temperatur 0: <INPUT type=\"text\" value=\"" + tdist.get_temperature(0) + "\"><br>\
-            Temperatur 1: <INPUT type=\"text\" value=\"" + tdist.get_temperature(1) + "\"><br>\
-            </form></body></html>";
+            Error Lampe: <INPUT type=\"text\" value=\"" + String(detectError.getValue()) + "\"><br>";
+
+    size_t count = tdist.numberOfSensors();
+    txt += "Number of sensors: <INPUT type=\"text\" value=\"" + String(count) + "\"><br>";
+    for (size_t idx = 0; idx < count; idx++)
+    {
+    	char buffer[100] = {0};
+    	DeviceAddress da = {0};
+    	tdist.get_address(idx, da);
+
+    	sprintf(buffer, "%2X-%2X-%2X-%2X-%2X-%2X-%2X-%2X", da[0], da[1], da[2], da[3], da[4], da[5], da[6], da[7] );
+    	txt += "Temperature " + String(idx) + ": <INPUT type=\"text\" value=\"" + tdist.get_temperature(idx, true)
+    			+ "\">  " + buffer + " <br>";
+    }
+
+    txt += "OneWire::reset returns: " + String(tdist.get_one_wire_reset()) + "<br>";
+
+    txt += "</form></body></html>";
     webServer.send(200, "text/html", txt);
   });
 }
 
 
-void setup()
+void setup_system()
 {
-	Serial.begin(115200);
-
-  statusLed.setup(LED_STATUS);
-  statusLed.setError(StatusLED::Setup);
-
 	config.setup();
-  statusLed.setError(StatusLED::Ok);
-
 	mqtt.setup(config.getDeviceName(), config.getMqttServer());
 	mqtt.setOnConnected([](){mqtt.publish("lampe","connected");});
+	ota.setup(config.getDeviceName());
+	setup_web_server();
+	tsystem.add(&ota, MyIOT::TimerSystem::TimeSpec(0,10e6));
+	tsystem.add(&mqtt, MyIOT::TimerSystem::TimeSpec(0,100e6));
+    tsystem.add(&webServer, MyIOT::TimerSystem::TimeSpec(0,100e6));
+}
+
+
+void setup()
+{
+	Serial.begin(74880);
+
+    statusLed.setup(LED_STATUS);
+    statusLed.setError(StatusLED::Setup);
+    setup_system();
+    statusLed.setError(StatusLED::Ok);
 
 	auto publish = [](const char* topic, const char* message){mqtt.publish(topic,message);};
 
-	ota.setup(config.getDeviceName());
 	detectError.setup( publish ) ;
 	button.setup(publish);
-	setup_web_server();
 	tdist.setup(publish);
-
-
-	tsystem.add(&ota, MyIOT::TimerSystem::TimeSpec(0,10e6));
-	tsystem.add(&mqtt, MyIOT::TimerSystem::TimeSpec(0,100e6));
-  tsystem.add(&webServer, MyIOT::TimerSystem::TimeSpec(0,100e6));
 
 	tsystem.add([](){detectError.expire();}, MyIOT::TimerSystem::TimeSpec(15));
 	tsystem.add([](){button.expire();}, MyIOT::TimerSystem::TimeSpec(1));
@@ -82,7 +98,7 @@ void setup()
 // The loop function is called in an endless loop
 void loop()
 {
-  tsystem.run_loop(10,1);
+  tsystem.run_loop(1,1);
 
   if (  WiFi.isConnected())
   {

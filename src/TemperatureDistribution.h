@@ -39,28 +39,58 @@ class TemperatureDistribution
 
     float get_temperature() 
     {
-      return get_temperature(0);
+      return get_temperature(0, true);
     }
 
-    float get_temperature(size_t index)
+    float get_temperature(size_t index, bool requestTemperature)
     {
       if (checkSensorIndex(index))
       {
         for (int i = 0; i < 3; i++) // try three times
         {
-         controller.requestTemperaturesByAddress(sensors[index]);
-         float retVal = controller.getTempC(sensors[index]);
+          if (requestTemperature)
+          {
+        	  controller.requestTemperaturesByAddress(sensors[index]);
+          }
+          float retVal = controller.getTempC(sensors[index]);
 
-         if (-127.0 == retVal) // -127 is "not connected"
-         {
-        	 continue; // retry
-         }
+          if (-127.0 == retVal) // -127 is "not connected"
+          {
+        	  requestTemperature = true;
+        	  continue; // retry
+          }
 
-         if (85.0 != retVal ) return retVal; // initial read return 85 degree
+          if (85.0 != retVal ) return retVal; // initial read return 85 degree
         }
       }
       return 0.0;
     }
+
+    bool get_address(size_t index, DeviceAddress& deviceAddress)
+    {
+        if (!checkSensorIndex(index)) return false;
+        ::memcpy(deviceAddress, sensors[index], sizeof(DeviceAddress));
+        return true;
+    }
+
+    size_t numberOfSensors() const
+    {
+      size_t index = 0;
+      for (; isIndexInRange(index); index++)
+      {
+        if (isIndexFree(index))
+        {
+          break;
+        }
+      }
+      return index;
+    }
+
+    uint8_t get_one_wire_reset()
+    {
+    	return oneWire.reset();
+    }
+
 
     void publish(size_t index, float temperature) const
     {
@@ -83,7 +113,13 @@ class TemperatureDistribution
       for (size_t index = 0; !isIndexFree(index); index++)
       {
         long start = millis();
-        float temperature = get_temperature(index);
+        if (index == 0)
+        {
+        	// only once for all sensors
+        	controller.requestTemperatures();
+        }
+
+        float temperature = get_temperature(index, false);
         publish(index, temperature);
         dump(index, temperature);
 
@@ -150,18 +186,6 @@ class TemperatureDistribution
       return sizeof(sensors)/sizeof(DeviceAddress);
     }
     
-    size_t numberOfSensors() const
-    {
-      size_t index = 0;
-      for (; isIndexInRange(index); index++)
-      {
-        if (isIndexFree(index))
-        {
-          break;
-        }
-      }
-      return index;
-    }
 
     bool checkSensorIndex(size_t index) const
     {

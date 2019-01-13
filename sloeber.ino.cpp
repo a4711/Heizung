@@ -2,7 +2,7 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2018-12-25 10:31:32
+//This file has been generated on 2019-01-03 11:46:39
 
 #include "Arduino.h"
 #include "Arduino.h"
@@ -18,6 +18,7 @@
 #include "src/StatusLED.h"
 
 void setup_web_server() ;
+void setup_system() ;
 void setup() ;
 void loop() ;
 
