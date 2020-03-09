@@ -13,6 +13,15 @@
 #include "TemperatureDistribution.h"
 #include "StatusLED.h"
 
+
+/* PIN Configuration
+ADC    ->   LDR to measure error led of heating system (measure means ON/OFF)
+GPIO0  ->   Button for configuration (wifi setup) the device.
+GPIO2  ->   blue LED of ESP12F module
+GPIO14 ->   OneWire : Dallas Temperature Sensor DS18B20 
+*/
+
+
 enum Constants
 {
 	LED_STATUS = 2,
