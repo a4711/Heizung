@@ -66,12 +66,12 @@ void setup_system()
 {
 	config.setup();
 	mqtt.setup(config.getDeviceName(), config.getMqttServer());
-	mqtt.setOnConnected([](){mqtt.publish("lampe","connected");});
+	mqtt.setOnConnected([](){mqtt.publish("startup","connected");});
 	ota.setup(config.getDeviceName());
 	setup_web_server();
 	tsystem.add(&ota, MyIOT::TimerSystem::TimeSpec(0,10e6));
 	tsystem.add(&mqtt, MyIOT::TimerSystem::TimeSpec(0,100e6));
-    tsystem.add(&webServer, MyIOT::TimerSystem::TimeSpec(0,100e6));
+  tsystem.add(&webServer, MyIOT::TimerSystem::TimeSpec(0,100e6));
 }
 
 
