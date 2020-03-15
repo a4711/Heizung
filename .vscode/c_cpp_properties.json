@@ -7,6 +7,8 @@
             "name": "Win32",
             "includePath": [
                 "h:/test_platform_io/2017_10_29_heizung/src",
+                "C:/.platformio/lib/Adafruit INA219_ID160",
+                "C:/.platformio/packages/framework-arduinoespressif8266/libraries/Wire",
                 "C:/.platformio/lib/DallasTemperature_ID54",
                 "C:/.platformio/packages/framework-arduinoespressif8266/libraries/Ticker/src",
                 "C:/.platformio/lib/OneWire_ID1",
@@ -45,7 +47,6 @@
                 "C:/.platformio/packages/framework-arduinoespressif8266/libraries/Servo/src",
                 "C:/.platformio/packages/framework-arduinoespressif8266/libraries/SoftwareSerial/src",
                 "C:/.platformio/packages/framework-arduinoespressif8266/libraries/TFT_Touch_Shield_V2",
-                "C:/.platformio/packages/framework-arduinoespressif8266/libraries/Wire",
                 "C:/.platformio/packages/framework-arduinoespressif8266/libraries/esp8266/src",
                 "C:/.platformio/packages/tool-unity",
                 ""
@@ -54,6 +55,8 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
                     "h:/test_platform_io/2017_10_29_heizung/src",
+                    "C:/.platformio/lib/Adafruit INA219_ID160",
+                    "C:/.platformio/packages/framework-arduinoespressif8266/libraries/Wire",
                     "C:/.platformio/lib/DallasTemperature_ID54",
                     "C:/.platformio/packages/framework-arduinoespressif8266/libraries/Ticker/src",
                     "C:/.platformio/lib/OneWire_ID1",
@@ -92,7 +95,6 @@
                     "C:/.platformio/packages/framework-arduinoespressif8266/libraries/Servo/src",
                     "C:/.platformio/packages/framework-arduinoespressif8266/libraries/SoftwareSerial/src",
                     "C:/.platformio/packages/framework-arduinoespressif8266/libraries/TFT_Touch_Shield_V2",
-                    "C:/.platformio/packages/framework-arduinoespressif8266/libraries/Wire",
                     "C:/.platformio/packages/framework-arduinoespressif8266/libraries/esp8266/src",
                     "C:/.platformio/packages/tool-unity",
                     ""

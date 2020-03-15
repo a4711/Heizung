@@ -12,7 +12,7 @@
 #include "DetectError.h"
 #include "TemperatureDistribution.h"
 #include "StatusLED.h"
-
+#include "zisterne.h"
 
 /* PIN Configuration
 ADC    ->   LDR to measure error led of heating system (measure means ON/OFF)
@@ -38,8 +38,8 @@ MyIOT::OTA ota;
 StatusLED statusLed;
 
 OneWire oneWire(ONEWIRE);
-
 TemperatureDistribution tdist(oneWire);
+Zisterne zisterne;
 
 
 void setup_web_server()
@@ -98,10 +98,12 @@ void setup()
 	detectError.setup( publish ) ;
 	button.setup(publish);
 	tdist.setup(publish);
+  zisterne.setup(publish);
 
 	tsystem.add([](){detectError.expire();}, MyIOT::TimerSystem::TimeSpec(15));
 	tsystem.add([](){button.expire();}, MyIOT::TimerSystem::TimeSpec(1));
 	tsystem.add([](){tdist.expire();}, MyIOT::TimerSystem::TimeSpec(60,0));
+	tsystem.add(&zisterne, MyIOT::TimerSystem::TimeSpec(5,0));
 }
 
 // The loop function is called in an endless loop
